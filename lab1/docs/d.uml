@@ -1,0 +1,32 @@
+@startuml
+class VolunterProject {
+  - pId: String
+  - title: String
+  - status: boolean
+  - coordinator: Coordinator
+  + VolunterProject(String, String, boolean, Coordinator)
+  + addVolunter(volunteer: Volunteer): void
+  + complete(): void
+  + result(): String
+}
+
+class Coordinator {
+  - cId: String
+  - fullName: String
+  + Coordinator(String, String)
+  + result(): String
+  + equals(Object): boolean
+  + hashCode(): int
+}
+
+class Volunteer {
+  - vId: String
+  - fullName: String
+  + Volunteer(String, String)
+  + getFullName(): String
+  + result(): String
+}
+
+VolunterProject --> Coordinator: має координатора
+VolunterProject ..> Volunteer: залучає волонтера
+@enduml
