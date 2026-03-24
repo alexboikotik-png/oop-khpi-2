@@ -1,0 +1,1 @@
+![UML Діаграма](lab01/docs-d.png)
