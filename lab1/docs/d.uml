@@ -12,7 +12,7 @@ class VolunterProject {
 
 class Coordinator {
   - cId: String
-  - fullName: String
+  - Name: String
   + Coordinator(String, String)
   + result(): String
   + equals(Object): boolean
@@ -21,12 +21,12 @@ class Coordinator {
 
 class Volunteer {
   - vId: String
-  - fullName: String
+  - Name: String
   + Volunteer(String, String)
-  + getFullName(): String
+  + gName(): String
   + result(): String
 }
 
 VolunterProject --> Coordinator: має координатора
-VolunterProject ..> Volunteer: залучає волонтера
+VolunterProject --> Volunteer: залучає волонтера
 @enduml
