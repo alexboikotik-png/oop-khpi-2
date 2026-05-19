@@ -1,0 +1,23 @@
+@startuml
+class Person {
+  - id: String
+  - name: String
+  + Person(id: String, name: String)
+  + getDetails(): String
+}
+
+class Volunteer {
+  - primarySkill: String
+  + Volunteer(id: String, name: String, primarySkill: String)
+  + getDetails(): String
+}
+
+class DriverVolunteer {
+  - licenseCategory: String
+  + DriverVolunteer(id: String, name: String, primarySkill: String, licenseCategory: String)
+  + getDetails(): String
+}
+
+Person --|> Volunteer
+Volunteer --|> DriverVolunteer
+@enduml
