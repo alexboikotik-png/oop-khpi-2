@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Trackable {
+    + getTrackingDetails(): String
+    + getCompletionRate(): double
+}
+
+interface Exportable {
+    + exportData(format: String): String
+}
+
+class GradeSnapshot {
+    - studentId: String
+    - averageGrade: double
+    + GradeSnapshot(studentId: String, averageGrade: double)
+    + exportData(format: String): String
+}
+
+class AttendanceReport {
+    - studentId: String
+    - totalClasses: int
+    - attendedClasses: int
+    + AttendanceReport(studentId: String, totalClasses: int, attendedClasses: int)
+    + getTrackingDetails(): String
+    + getCompletionRate(): double
+}
+
+class ActivityDigest {
+    - studentId: String
+    - completedAssignments: int
+    - totalAssignments: int
+    - forumPosts: int
+    + ActivityDigest(studentId: String, completedAssignments: int, totalAssignments: int, forumPosts: int)
+    + getTrackingDetails(): String
+    + getCompletionRate(): double
+    + exportData(format: String): String
+}
+
+Exportable <|.. GradeSnapshot
+Trackable <|.. AttendanceReport
+Exportable <|.. ActivityDigest
+Trackable <|.. ActivityDigest
+@enduml
