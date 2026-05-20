@@ -1,9 +1,7 @@
 @startuml
-skinparam classAttributeIconSize 0
-
 interface Trackable {
-    + getTrackingDetails(): String
-    + getCompletionRate(): double
+    + TrackingDetails(): String
+    + CompletionRate(): double
 }
 
 interface Exportable {
@@ -22,8 +20,8 @@ class AttendanceReport {
     - totalClasses: int
     - attendedClasses: int
     + AttendanceReport(studentId: String, totalClasses: int, attendedClasses: int)
-    + getTrackingDetails(): String
-    + getCompletionRate(): double
+    + TrackingDetails(): String
+    + CompletionRate(): double
 }
 
 class ActivityDigest {
@@ -32,8 +30,8 @@ class ActivityDigest {
     - totalAssignments: int
     - forumPosts: int
     + ActivityDigest(studentId: String, completedAssignments: int, totalAssignments: int, forumPosts: int)
-    + getTrackingDetails(): String
-    + getCompletionRate(): double
+    + TrackingDetails(): String
+    + CompletionRate(): double
     + exportData(format: String): String
 }
 
