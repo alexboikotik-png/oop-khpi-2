@@ -1,0 +1,38 @@
+@startuml
+abstract class WorkOrder {
+    - orderId: String
+    - description: String
+    - baseCost: double
+    + WorkOrder(orderId: String, description: String, baseCost: double)
+    + OrderId(): String
+    + Description(): String
+    + BaseCost(): double
+    + {abstract} processOrder(): void
+    + {abstract} TotalCost(): double
+}
+
+class AssemblyOrder {
+    - partCount: int
+    + AssemblyOrder(orderId: String, description: String, baseCost: double, partCount: int)
+    + processOrder(): void
+    + TotalCost(): double
+}
+
+class MaintenanceOrder {
+    - PartsReplacement: boolean
+    + MaintenanceOrder(orderId: String, description: String, baseCost: double, PartsReplacement: boolean)
+    + processOrder(): void
+    + TotalCost(): double
+}
+
+class QualityCheckOrder {
+    - inspectionPoints: int
+    + QualityCheckOrder(orderId: String, description: String, baseCost: double, inspectionPoints: int)
+    + processOrder(): void
+    + TotalCost(): double
+}
+
+WorkOrder <|-- AssemblyOrder
+WorkOrder <|-- MaintenanceOrder
+WorkOrder <|-- QualityCheckOrder
+@enduml
