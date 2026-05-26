@@ -1,0 +1,37 @@
+@startuml
+interface CloudItem {
+  + getName(): String
+  + getSizeKb(): long
+}
+
+class DocumentFile {
+  - name: String
+  - sizeKb: long
+  - wordCount: int
+}
+
+class PhotoAlbum {
+  - name: String
+  - sizeKb: long
+  - photoCount: int
+}
+
+class BackupRecord {
+  - name: String
+  - sizeKb: long
+  - backupVersion: String
+}
+
+class CloudRecord {
+  - item: T
+  - owner: String
+  - uploadTime: LocalDateTime
+  + getItem(): T
+  + getOwner(): String
+}
+
+CloudItem <.. DocumentFile
+CloudItem <.. PhotoAlbum
+CloudItem <.. BackupRecord
+CloudRecord <-- CloudItem
+@enduml
