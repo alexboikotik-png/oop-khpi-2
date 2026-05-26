@@ -1,0 +1,40 @@
+@startuml
+abstract class AnalyticsRecord {
+    - String studentId
+    - LocalDate recordDate
+    + abstract String toTextLine()
+}
+
+class GradeSnapshot extends AnalyticsRecord {
+    - String courseName
+    - int grade
+}
+
+class AttendanceReport extends AnalyticsRecord {
+    - int presentDays
+    - int totalDays
+}
+
+class ActivityDigest extends AnalyticsRecord {
+    - String activityType
+    - int points
+}
+
+class LearningAnalyticsRegistry {
+    - List<AnalyticsRecord> records
+    + void addRecord(AnalyticsRecord record)
+    + List<AnalyticsRecord> Records()
+    + Optional<AnalyticsRecord> findStudentId(String id)
+}
+
+class AnalyticsFileManager {
+    + void saveAsText(LearningAnalyticsRegistry registry, Path path)
+    + LearningAnalyticsRegistry loadFromText(Path path)
+    + void serialize(LearningAnalyticsRegistry registry, Path path)
+    + LearningAnalyticsRegistry deserialize(Path path)
+}
+
+
+AnalyticsFileManager --> LearningAnalyticsRegistry
+AnalyticsFileManager --> InvalidAnalyticsDataException
+@enduml
