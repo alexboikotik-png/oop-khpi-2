@@ -1,0 +1,35 @@
+@startuml
+class Group {
+  - name: String
+  + Group(name: String)
+}
+class Student {
+  - name: String
+  - group: Group
+  + Student(name: String, group: Group)
+}
+class GradeEntry {
+  - student: Student
+  - subject: String
+  - grade: int
+}
+class JournalContainer<T> {
+  - elements: T[]
+  - size: int
+  + add(item: T): void
+  + get(index: int): T
+  + remove(index: int): T
+  + size(): int
+  + isEmpty(): boolean
+  + iterator(): Iterator<T>
+}
+class JournalIterator {
+  - currentIndex: int
+  + hasNext(): boolean
+  + next(): T
+}
+JournalContainer --> Iterable
+JournalContainer --> JournalIterator
+Student --> Group
+GradeEntry --> Student
+@enduml
