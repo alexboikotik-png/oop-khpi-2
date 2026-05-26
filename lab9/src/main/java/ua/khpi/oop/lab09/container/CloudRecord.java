@@ -28,7 +28,6 @@ public class CloudRecord<T extends CloudItem> {
     }
 
     public String toString() {
-        return "Запис{" +
-                "Власник = " + owner + " Час = " + uploadTime + " Предмет = " + item;
+        return "Запис" + "Власник = " + owner + " Час = " + uploadTime + " Предмет = " + item;
     }
 }
