@@ -31,8 +31,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <argLine>-Djava.library.path=${project.basedir}/build/native</argLine>
-                </configuration>
+                <argLine>-Djava.library.path=${project.basedir}/../build/native</argLine>
+            </configuration>
             </plugin>
         </plugins>
     </build>
