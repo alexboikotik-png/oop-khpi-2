@@ -1,0 +1,40 @@
+name: Java CI with Maven and JNI
+
+on:
+  push:
+    branches: [ "main", "lab16" ]
+  pull_request:
+    branches: [ "main", "lab16" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Generate JNI Headers
+      run: |
+        mkdir -p native-headers
+        javac -h native-headers lab16/src/main/java/ua/khpi/oop/lab16/NativeTransformer.java
+
+    - name: Compile Native C++ Library for Linux
+      run: |
+        mkdir -p build/native
+        clang++ -std=c++17 -shared -fPIC \
+          -I"$JAVA_HOME/include" \
+          -I"$JAVA_HOME/include/linux" \
+          -Inative-headers \
+          native/transformer.cpp \
+          -o build/native/libtransformer.so
+
+    - name: Run Tests with Maven
+      run: mvn clean test -f lab16/pom.xml -Djava.library.path=${{ github.workspace }}/build/native
