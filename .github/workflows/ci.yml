@@ -26,7 +26,7 @@ jobs:
         mkdir -p native-headers
         javac -h native-headers src/main/java/ua/khpi/oop/lab16/NativeTransformer.java
 
-    - name: Compile Native C++ Library
+    - name: Compile Native C++ Library for Linux
       run: |
         mkdir -p build/native
         clang++ -std=c++17 -shared -fPIC \
@@ -36,5 +36,5 @@ jobs:
           native/transformer.cpp \
           -o build/native/libtransformer.so
 
-    - name: Run Maven Tests
-      run: mvn clean test
+    - name: Run Tests with Maven
+      run: mvn clean test -Djava.library.path=${{ github.workspace }}/build/native
